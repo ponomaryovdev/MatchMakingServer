@@ -1,3 +1,4 @@
+const { debug } = require('console');
 const { networkInterfaces } = require('os');
 
 
@@ -21,16 +22,12 @@ var getlocalIP = function()
     return results['Беспроводная сеть'][0];
 }
 
-var findRoomByName = function(name){
-    var roomName = name;
-    var index = data.findIndex(function(item, i){
-        return item.name === roomName
-    });
-    return index;
+var findIndexByName = function(name, mass){
+    return mass.findIndex(std=> std.name === name);
 }
 
 module.exports = {
     getlocalIP,
-    findRoomByName
+    findIndexByName
  };
 
