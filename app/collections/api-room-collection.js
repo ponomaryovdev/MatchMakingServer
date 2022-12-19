@@ -2,10 +2,7 @@ const Room = require('../models/room');
 const utils = require('../utils/utils');
 const { v4: uuidv4 } = require('uuid');
 const log = require('../utils/logger');
-
-var child = require('child_process').execFile;
-var executablePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
-var parameters = ["-log -port 7777"];
+const session = require('../controllers/api-session-controller');
 
 const rooms = []
 
@@ -36,15 +33,9 @@ const createNewRoom = (req, res) =>
     //newRoom.serverAddress = utils.getlocalIP();
     newRoom.webrtcAddress = 'http://51.250.25.185:3010/api/v1/join';
     newRoom.port = roomPort;
-    
+    //newRoom.processpid = session.runNewSessionInstance();
+
     rooms.push(newRoom);
-
-    // parameters = [`-log -port ${roomPort}`];
-
-    // child(executablePath, parameters, function(err, data) {
-    //     console.log(err)
-    //     console.log(data.toString());
-    // });
 
     log.room('[Status]', `Room "${roomName}" has been created`);
     let json = JSON.stringify(newRoom, null, '\t');
@@ -58,8 +49,10 @@ const getRoomByName = function(roomName)
 
 const removeRoomByName = function(removedRoom)
 {
+    let roomindex = utils.findIndexByName(removedRoom, rooms);
+    session.endSessionInstance(rooms[roomindex].processpid);
     log.room('[Status]', `Room "${removedRoom}" has been deleted`);
-    rooms.splice(utils.findIndexByName(removedRoom, rooms), 1);
+    rooms.splice(roomindex, 1);
 }
 
 var verifyRoomName = (req) =>{

@@ -9,6 +9,7 @@ module.exports = class Room
     webrtcAddress = 'default';
     port = '7777';
     participants = [];
+    processpid = 0;
 
     constructor(obj){
         obj && Object.assign(this, obj);
