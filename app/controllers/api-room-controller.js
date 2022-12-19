@@ -13,6 +13,11 @@ const handleError = (res, error) => {
 }
 
 const getRooms = (req, res) =>{
+ /* #swagger.description = 'Get all rooms'
+    #swagger.responses[200] = {
+     description: 'Array of all rooms',
+     schema: { $ref: '#/definitions/Room' }
+ } */
     res.json(getAllRooms());
 }
 
@@ -21,7 +26,7 @@ const createRoom = (req, res) =>{
 }
 
 const removeRoom = (req, res) =>{
-    removeRoomByName(req.body.name);
+    removeRoomByName(req.body.roomname);
     res.status(200).send(`Room ${req.body.name} has been deleted`);
 }
 

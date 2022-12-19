@@ -6,17 +6,20 @@ const users = []
 
 const addUser = function(username)
 {
-    users.push(new User(uuidv4(), username));
+    var user = new User();
+    user.init(uuidv4(), username);
+    users.push(user);
 }
 
-const removeUser = (req, res) =>
+const removeUser = function(username)
 {
-    users.splice(utils.findIndexByName(removedRoom, users), 1);
+    users.splice(utils.findIndexByName(username, users), 1);
 }
 
 const getUserByName = function(username)
 {
-    return new User(users[utils.findIndexByName(username, users)]);
+    let user = users[utils.findIndexByName(username, users)];
+    return users[utils.findIndexByName(username, users)];
 }
 
 const getAllUsers = function()

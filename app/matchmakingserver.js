@@ -1,13 +1,15 @@
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger/swagger-output.json')
 const routes = require('./routes/api-routes');
 const bodyParser = require('body-parser');
 const express = require('express');
 const port = 3002;
 const app = express();
+var logger = require('intel');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, }));
-
-//run services
 app.use(routes);
 
 app.use(function(err, req, res, next){
@@ -17,6 +19,8 @@ app.use(function(err, req, res, next){
       error: err
     })     
   })
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // Start express server
 const server = app.listen(port, (error) => {
@@ -40,6 +44,6 @@ const server = app.listen(port, (error) => {
 	`,
         'font-family:monospace',
     );
-    console.log(`Matchmaking server was started!`);
-    console.log(`Server listening on port ${server.address().port}`);
+    logger.info(`Server listening on port ${server.address().port}`);
+
 });

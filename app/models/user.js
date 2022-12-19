@@ -1,17 +1,21 @@
 class User
 {
-    _userUid = 'default';
-    _username = 'default';
+    useruid = 'default';
+    username = 'default';
     
-    constructor(useruid, username)
+    constructor(obj){
+        obj && Object.assign(this, obj);
+    }
+
+    init(useruid, username)
     {
-        this._userUid =useruid;
-        this._username = username;
+        this.useruid =useruid;
+        this.username = username;
     }
 
     toJSON()
     {
-        return [this._userUid, this._username];
+        return { userid: this.useruid, username: this.username };
     }
 }
 

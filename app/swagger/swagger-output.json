@@ -1,0 +1,220 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Matchmaking API",
+    "description": "Matchmakin API for control matchmaking service",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3002",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/v1/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/newroom/": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/v1/removeroom/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomname": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/join/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomname": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/leave/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomname": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/rooms": {
+      "get": {
+        "description": "Get all rooms",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Array of all rooms",
+            "schema": {
+              "$ref": "#/definitions/Room"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "description": "Get all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Array of all users",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Room": {
+      "type": "object",
+      "properties": {
+        "roomuid": {
+          "type": "string",
+          "example": "fde329b8-d471-4233-b4c4-2b79e95b21bd"
+        },
+        "name": {
+          "type": "string",
+          "example": "room"
+        },
+        "serverAddress": {
+          "type": "string",
+          "example": "192.168.0.1"
+        },
+        "webrtcAddress": {
+          "type": "string",
+          "example": "http://51.250.25.185:3010/api/v1/join"
+        },
+        "port": {
+          "type": "string",
+          "example": "7777"
+        },
+        "participants": {
+          "type": "string",
+          "example": "[]"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "useruid": {
+          "type": "string",
+          "example": "fde329b8-d471-4233-b4c4-2b79e95b21bd"
+        },
+        "name": {
+          "type": "string",
+          "example": "user"
+        }
+      }
+    }
+  }
+}

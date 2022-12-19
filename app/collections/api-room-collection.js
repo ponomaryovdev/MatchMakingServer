@@ -30,12 +30,12 @@ const createNewRoom = (req, res) =>
     }
     
     var newRoom = new Room();
-    newRoom.roomUid = uuidv4();
-    newRoom.name = roomName;
-    newRoom.serverAddress = utils.getlocalIP();
+    newRoom.roomuid = uuidv4();
+    newRoom.roomname = roomName;
+    //newRoom.serverAddress = utils.getlocalIP();
     newRoom.webrtcAddress = 'http://51.250.25.185:3010/api/v1/join';
     newRoom.port = roomPort;
-
+    
     rooms.push(newRoom);
 
     // parameters = [`-log -port ${roomPort}`];
@@ -50,20 +50,25 @@ const createNewRoom = (req, res) =>
     res.status(200).send(json);
 }
 
+const getRoomByName = function(roomName)
+{
+    return rooms[utils.findIndexByName(roomName, rooms)];
+}
+
 const removeRoomByName = function(removedRoom)
 {
     rooms.splice(utils.findIndexByName(removedRoom, rooms), 1);
 }
 
-var verifyRoomName = function(req){
+var verifyRoomName = (req) =>{
     var rooms = getAllRooms();
     for (let index = 0; index < rooms.length; index++) {
-        if(rooms[index].name == req.body.name)
+        if(rooms[index].roomname == req.body.roomname)
         {
             return 0;
         }
     }
-    return req.body.name;
+    return req.body.roomname;
 }
 
 var getAvaliblePort = function()  {
@@ -87,5 +92,6 @@ module.exports = {
     getAllRooms,
     removeRoomByName,
     getAvaliblePort,
-    verifyRoomName
+    verifyRoomName,
+    getRoomByName
 };

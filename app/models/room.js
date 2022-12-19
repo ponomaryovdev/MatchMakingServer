@@ -1,38 +1,31 @@
-let Room = class
+const utils = require('../utils/utils');
+const User = require('./user');
+
+module.exports = class Room
 {
-    roomUid = "default"
-    name = 'default'
+    roomuid = "default"
+    roomname = 'default'
     serverAddress = 'default';
     webrtcAddress = 'default';
     port = '7777';
     participants = [];
 
-    constructor()
-    {
-
+    constructor(obj){
+        obj && Object.assign(this, obj);
     }
 
     addParticipant = function(participant)
     {
-        participant.push(participant);
-
+        this.participants.push(participant);
     }
-
-    removeParticipant = function()
+    
+    removeParticipant = function(participant)
     {
-        let room = new Room(rooms);
-        for (let index = 0; index < room.length; index++) {
-            if(room[index].roomName = roomNameToJoin)
-            {
-                room[index].participant.push(participant);
-            }
-        }
+        this.participants.splice(utils.findIndexByName(participant, this.participants), 1);
     }
-
+    
     getAllParticipant = function()
     {
         return participants;
     }
 }
-
-module.exports = Room;
