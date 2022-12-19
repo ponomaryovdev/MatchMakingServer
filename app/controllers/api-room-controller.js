@@ -1,3 +1,5 @@
+const log = require('../utils/logger');
+
 const
 {
     getAllRooms,
@@ -27,7 +29,7 @@ const createRoom = (req, res) =>{
 
 const removeRoom = (req, res) =>{
     removeRoomByName(req.body.roomname);
-    res.status(200).send(`Room ${req.body.name} has been deleted`);
+    res.status(200).send(`Room "${req.body.name}" has been deleted`);
 }
 
 module.exports = {

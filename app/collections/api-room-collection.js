@@ -1,6 +1,7 @@
 const Room = require('../models/room');
 const utils = require('../utils/utils');
-const { v4: uuidv4 } = require('uuid'); 
+const { v4: uuidv4 } = require('uuid');
+const log = require('../utils/logger');
 
 var child = require('child_process').execFile;
 var executablePath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
@@ -45,7 +46,7 @@ const createNewRoom = (req, res) =>
     //     console.log(data.toString());
     // });
 
-    console.log(`Room ${roomName} has been created`);
+    log.room('[Status]', `Room "${roomName}" has been created`);
     let json = JSON.stringify(newRoom, null, '\t');
     res.status(200).send(json);
 }
@@ -57,6 +58,7 @@ const getRoomByName = function(roomName)
 
 const removeRoomByName = function(removedRoom)
 {
+    log.room('[Status]', `Room "${removedRoom}" has been deleted`);
     rooms.splice(utils.findIndexByName(removedRoom, rooms), 1);
 }
 

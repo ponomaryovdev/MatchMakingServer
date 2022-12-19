@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const { v4: uuidv4 } = require('uuid'); 
 const utils = require('../utils/utils');
+const log = require('../utils/logger');
 
 const users = []
 

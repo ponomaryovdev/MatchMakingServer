@@ -5,8 +5,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const port = 3002;
 const app = express();
-var logger = require('intel');
-
+const log = require('./utils/logger');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, }));
@@ -44,6 +43,5 @@ const server = app.listen(port, (error) => {
 	`,
         'font-family:monospace',
     );
-    logger.info(`Server listening on port ${server.address().port}`);
-
+    log.server('[Status]', `Server listening on port ${server.address().port}`);
 });
