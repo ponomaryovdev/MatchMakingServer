@@ -30,28 +30,30 @@ const createNewRoom = (req, res) =>
     var newRoom = new Room();
     newRoom.roomuid = uuidv4();
     newRoom.roomname = roomName;
+    newRoom.serverAddress = '192.168.99.204';
     //newRoom.serverAddress = utils.getlocalIP();
     newRoom.webrtcAddress = 'http://51.250.25.185:3010/api/v1/join';
     newRoom.port = roomPort;
-    //newRoom.processpid = session.runNewSessionInstance();
+    newRoom.processpid = session.runNewSessionInstance(roomPort);
+    newRoom.password = req.body.password;
 
     rooms.push(newRoom);
 
-    log.room('[Status]', `Room "${roomName}" has been created`);
+    log.server('[Status]', `Room "${roomName}" has been created`);
     let json = JSON.stringify(newRoom, null, '\t');
     res.status(200).send(json);
 }
 
 const getRoomByName = function(roomName)
 {
-    return rooms[utils.findIndexByName(roomName, rooms)];
+    return rooms[utils.findRoomIndexByName(roomName, rooms)];
 }
 
 const removeRoomByName = function(removedRoom)
 {
-    let roomindex = utils.findIndexByName(removedRoom, rooms);
+    let roomindex = utils.findRoomIndexByName(removedRoom, rooms);
     session.endSessionInstance(rooms[roomindex].processpid);
-    log.room('[Status]', `Room "${removedRoom}" has been deleted`);
+    log.server('[Status]', `Room "${removedRoom}" has been deleted`);
     rooms.splice(roomindex, 1);
 }
 
@@ -68,7 +70,7 @@ var verifyRoomName = (req) =>{
 
 var getAvaliblePort = function()  {
     var rooms = getAllRooms();
-    var port = Math.floor(Math.random() * (9009 - 9000) + 9000);
+    var port = Math.floor(Math.random() * (8000 - 7777) + 7777);
     for (let index = 0; index < rooms.length; index++) {
         if(rooms[index].port == port)
         {

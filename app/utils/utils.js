@@ -1,5 +1,29 @@
 const { debug } = require('console');
 const { networkInterfaces } = require('os');
+var os = require('os');
+
+var getCurrentOs = function()
+{
+    return os.platform();
+}
+
+var isWindows = function(){
+    if(getCurrentOs() == "win32"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+var isLinux = function(){
+    if(getCurrentOs() == "linux"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 
 var getlocalIP = function()
@@ -22,12 +46,20 @@ var getlocalIP = function()
     return results['Беспроводная сеть'][0];
 }
 
-var findIndexByName = function(name, mass){
-    return mass.findIndex(std=> std.name === name);
+var findRoomIndexByName = function(roomname, mass){
+    return mass.findIndex(std=> std.roomname === roomname);
+}
+
+var findUserIndexByName = function(username, mass){
+    return mass.findIndex(std=> std.username === username);
 }
 
 module.exports = {
     getlocalIP,
-    findIndexByName
+    findRoomIndexByName,
+    findUserIndexByName,
+    getCurrentOs,
+    isWindows,
+    isLinux,
  };
 

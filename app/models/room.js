@@ -1,5 +1,4 @@
 const utils = require('../utils/utils');
-const User = require('./user');
 
 module.exports = class Room
 {
@@ -10,6 +9,7 @@ module.exports = class Room
     port = '7777';
     participants = [];
     processpid = 0;
+    password = "";
 
     constructor(obj){
         obj && Object.assign(this, obj);
@@ -22,11 +22,11 @@ module.exports = class Room
     
     removeParticipant = function(participant)
     {
-        this.participants.splice(utils.findIndexByName(participant, this.participants), 1);
+        this.participants.splice(utils.findUserIndexByName(participant, this.participants), 1);
     }
     
     getAllParticipant = function()
     {
-        return participants;
+        return this.participants;
     }
 }

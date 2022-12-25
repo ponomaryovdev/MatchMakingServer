@@ -6,6 +6,7 @@ const express = require('express');
 const port = 3002;
 const app = express();
 const log = require('./utils/logger');
+const path = require('path');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, }));

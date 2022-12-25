@@ -7,12 +7,6 @@ class User
         obj && Object.assign(this, obj);
     }
 
-    init(useruid, username)
-    {
-        this.useruid =useruid;
-        this.username = username;
-    }
-
     toJSON()
     {
         return { userid: this.useruid, username: this.username };

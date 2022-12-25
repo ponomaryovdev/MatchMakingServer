@@ -8,26 +8,25 @@ const users = []
 const addUser = function(username)
 {
     var user = new User();
-    user.init(uuidv4(), username);
+    user.username = username;
+    user.useruid = uuidv4();
     users.push(user);
 }
 
 const removeUser = function(username)
 {
-    users.splice(utils.findIndexByName(username, users), 1);
+    users.splice(utils.findUserIndexByName(username, users), 1);
 }
 
 const getUserByName = function(username)
 {
-    let user = users[utils.findIndexByName(username, users)];
-    return users[utils.findIndexByName(username, users)];
+    return users[utils.findUserIndexByName(username, users)];
 }
 
 const getAllUsers = function()
 {
     return users;
 }
-
 
 module.exports = {
     addUser,
