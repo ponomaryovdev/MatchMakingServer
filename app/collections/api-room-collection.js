@@ -30,7 +30,7 @@ const createNewRoom = (req, res) =>
     var newRoom = new Room();
     newRoom.roomuid = uuidv4();
     newRoom.roomname = roomName;
-    newRoom.serverAddress = '192.168.99.204';
+    newRoom.serverAddress = '192.168.1.71';
     //newRoom.serverAddress = utils.getlocalIP();
     newRoom.webrtcAddress = 'http://51.250.25.185:3010/api/v1/join';
     newRoom.port = roomPort;
