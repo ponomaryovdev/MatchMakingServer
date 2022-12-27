@@ -2,6 +2,7 @@ class User
 {
     useruid = 'default';
     username = 'default';
+    avatarid = 'default'
     
     constructor(obj){
         obj && Object.assign(this, obj);

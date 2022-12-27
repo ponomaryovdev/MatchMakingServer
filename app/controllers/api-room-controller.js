@@ -40,11 +40,10 @@ const removeUserFromRoom = (req, res) =>{
     log.room('[Status]', `Client "${req.body.username}" left from room "${req.body.roomname}"`);
     res.status(200).send(`You are left the room "${req.body.roomname}"`);
 
-    if(Object.keys(room.getAllParticipant()).length === 0)
-    {
-        
-        roomCollection.removeRoomByName(this.roomname);
-    }
+    // if(Object.keys(room.getAllParticipant()).length === 0)
+    // {
+    //     roomCollection.removeRoomByName(this.roomname);
+    // }
 }
 
 module.exports = {
