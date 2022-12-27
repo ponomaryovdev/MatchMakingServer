@@ -3,6 +3,7 @@ const utils = require('../utils/utils');
 const { v4: uuidv4 } = require('uuid');
 const log = require('../utils/logger');
 const session = require('../controllers/api-session-controller');
+const request = require('request')
 
 const rooms = []
 
@@ -15,7 +16,7 @@ const createNewRoom = (req, res) =>
 {
     var roomPort = getAvaliblePort();
     var roomName = verifyRoomName(req);
-
+    
     if(roomName == 0)
     {
         res.status(405).send("A room with that name already exists");
@@ -26,13 +27,34 @@ const createNewRoom = (req, res) =>
         res.status(404).send("No port available. Room has not been created");
         return;
     }
-    
+
     var newRoom = new Room();
     newRoom.roomuid = uuidv4();
     newRoom.roomname = roomName;
-    newRoom.serverAddress = '192.168.1.71';
+    newRoom.serverAddress = '158.160.22.223';
     //newRoom.serverAddress = utils.getlocalIP();
-    newRoom.webrtcAddress = 'http://51.250.25.185:3010/api/v1/join';
+    request.post(
+        {
+          url: 'http://158.160.22.223:3010/api/v1/join',
+          headers: { 
+            'authorization': 'mirotalksfu_default_secret',
+            'Content-Type': 'application/json'
+          },
+          form: {
+            room: roomName,
+            name: 'username',
+            audio: '1',
+            video: '0',
+            screen: '0',
+            notify: '1',
+          },
+        },
+        (err, response, body) => {
+            var obj = JSON.parse(response.body);
+            newRoom.webrtcAddress = obj.join;
+        }
+      );
+
     newRoom.port = roomPort;
     newRoom.processpid = session.runNewSessionInstance(roomPort);
     newRoom.password = req.body.password;

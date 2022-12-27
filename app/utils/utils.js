@@ -1,6 +1,7 @@
 const { debug } = require('console');
 const { networkInterfaces } = require('os');
 var os = require('os');
+const request = require('request')
 
 var getCurrentOs = function()
 {
@@ -54,6 +55,34 @@ var findUserIndexByName = function(username, mass){
     return mass.findIndex(std=> std.username === username);
 }
 
+var getWebRtcAddress = function(roomname)
+{
+    let ip;
+    request.post(
+        {
+          url: 'http://158.160.22.223:3010/api/v1/join',
+          headers: { 
+            'authorization': 'mirotalksfu_default_secret',
+            'Content-Type': 'application/json'
+          },
+          form: {
+            room: roomname,
+            name: 'username',
+            audio: '1',
+            video: '0',
+            screen: '0',
+            notify: '1',
+          },
+        },
+        (err, response, body) => {
+            ip = response.body;
+        }
+      );
+
+      return ip;
+
+}
+
 module.exports = {
     getlocalIP,
     findRoomIndexByName,
@@ -61,5 +90,6 @@ module.exports = {
     getCurrentOs,
     isWindows,
     isLinux,
+    getWebRtcAddress,
  };
 
