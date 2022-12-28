@@ -30,9 +30,8 @@ const runNewSessionInstance = function(port)
     if(utils.isLinux()){
         let pathd = path.join(getMasterGamePath(), `${PROJECTNAME}Server`);
         exec(`"sh ./${pathd}" -log ?port=${port}`);
-        instanceProcess.pid = 0;
     }
-    return instanceProcess.pid;
+    return 0;
 }
 
 const endSessionInstance = function(pid)
