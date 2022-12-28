@@ -2,7 +2,7 @@ var shell = require('shelljs');
 const utils = require('../utils/utils');
 const { spawn } = require('node:child_process');
 const path = require('path');
-const PROJECTNAME = 'RoomTest';
+const PROJECTNAME = 'MultiplayerTemplate';
 
 var proeccesInstances = {};
 
