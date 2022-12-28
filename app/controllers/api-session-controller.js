@@ -29,7 +29,7 @@ const runNewSessionInstance = function(port)
     }
     if(utils.isLinux()){
         let pathd = path.join('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer');
-        spawn(`${pathd}`, ['-log', `?=port${port}`]);
+        spawn(`${pathd}`, ['-log', `?port=${port}`]);
     }
     return 0;
 }
