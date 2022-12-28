@@ -29,7 +29,7 @@ const runNewSessionInstance = function(port)
     }
     if(utils.isLinux()){
         let pathd = path.join(getMasterGamePath(), `${PROJECTNAME}Server`);
-        exec(`"sh ./${pathd}" -log ?port=${port}`);
+        exec(`./${pathd} -log ?port=${port}`);
     }
     return 0;
 }
