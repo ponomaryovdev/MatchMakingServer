@@ -29,7 +29,8 @@ const runNewSessionInstance = function(port)
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     if(utils.isLinux()){
-        spawn(`/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer`, ['-log', `?port=${port}`]);
+        shell.cd('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer');
+        shell.cd('./MultiplayerTemplateServer -log');
     }
     return 0;
 }
@@ -42,8 +43,7 @@ const endSessionInstance = function(pid)
         console.log("kill " + pid);
     }
     if(utils.isLinux()){
-        shell.cd('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer');
-        shell.cd('./MultiplayerTemplateServer -log');
+
         let subproc = proeccesInstances[pid];
         subproc.kill();
         console.log("kill " + pid);
