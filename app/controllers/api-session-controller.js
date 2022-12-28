@@ -5,6 +5,7 @@ const { exec } = require("child_process");
 const path = require('path');
 const PROJECTNAME = 'MultiplayerTemplate';
 var shell = require('shelljs');
+const execSync = require('child_process').execSync;
 
 var proeccesInstances = {};
 
@@ -29,9 +30,7 @@ const runNewSessionInstance = function(port)
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     if(utils.isLinux()){
-        shell.cd('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux');
-        shell.chmod('ugo+x', 'MultiplayerTemplateServer');
-        shell.exec('./MultiplayerTemplateServer -log');    
+        child_process.execSync('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer -log');
     }
     return 0;
 }
