@@ -28,7 +28,7 @@ const runNewSessionInstance = function(port)
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     if(utils.isLinux()){
-        let pathd = path.join('~/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer');
+        let pathd = path.join('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer');
         spawn(`${pathd}`, ['-log', `?=port${port}`]);
     }
     return 0;
