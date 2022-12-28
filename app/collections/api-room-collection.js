@@ -68,15 +68,15 @@ const createNewRoom = (req, res) =>
 
 const getRoomByName = function(roomName)
 {
-    return this.rooms[utils.findRoomIndexByName(roomName, this.rooms)];
+    return rooms[utils.findRoomIndexByName(roomName, rooms)];
 }
 
 const removeRoomByName = function(removedRoom)
 {
-    let roomindex = utils.findRoomIndexByName(removedRoom, this.rooms);
-    session.endSessionInstance(this.rooms[roomindex].processpid);
+    let roomindex = utils.findRoomIndexByName(removedRoom, rooms);
+    session.endSessionInstance(rooms[roomindex].processpid);
     log.server('[Status]', `Room "${removedRoom}" has been deleted`);
-    this.rooms.splice(roomindex, 1);
+    rooms.splice(roomindex, 1);
 }
 
 var verifyRoomName = (req) =>{
