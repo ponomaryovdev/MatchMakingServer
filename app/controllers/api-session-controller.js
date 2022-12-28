@@ -45,8 +45,8 @@ const endSessionInstance = function(pid)
     }
     if(utils.isLinux()){
 
-        let subproc = proeccesInstances[pid];
-        subproc.kill();
+        // let subproc = proeccesInstances[pid];
+        // subproc.kill();
         console.log("kill " + pid);
     };
 }
