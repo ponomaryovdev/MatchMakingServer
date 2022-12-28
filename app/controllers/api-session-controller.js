@@ -30,7 +30,7 @@ const runNewSessionInstance = function(port)
     }
     if(utils.isLinux()){
         shell.cd('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux');
-        chmod('+x', 'MultiplayerTemplateServer');
+        shell.chmod('+x', 'MultiplayerTemplateServer');
         shell.exec('./MultiplayerTemplateServer -log');    
     }
     return 0;
