@@ -29,8 +29,8 @@ const runNewSessionInstance = function(port)
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     if(utils.isLinux()){
-        shell.cd('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer');
-        shell.cd('./MultiplayerTemplateServer -log');
+        shell.cd('/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux');
+        shell.exec('./MultiplayerTemplateServer -log');
     }
     return 0;
 }
