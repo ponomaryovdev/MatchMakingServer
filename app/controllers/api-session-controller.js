@@ -1,6 +1,7 @@
 var shell = require('shelljs');
 const utils = require('../utils/utils');
 const { spawn } = require('node:child_process');
+const { exec } = require("child_process");
 const path = require('path');
 const PROJECTNAME = 'MultiplayerTemplate';
 
@@ -28,7 +29,7 @@ const runNewSessionInstance = function(port)
     }
     if(utils.isLinux()){
         let pathd = path.join(getMasterGamePath(), `${PROJECTNAME}Server`);
-        instanceProcess = spawn(`${pathd}`, ['-log', `?port=${port}`], { shell: true });
+        exec(`sh ./${pathd} -log ?=${port}`);
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     return instanceProcess.pid;
