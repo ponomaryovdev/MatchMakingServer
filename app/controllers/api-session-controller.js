@@ -13,7 +13,7 @@ const getMasterGamePath = function()
         return pathd;
     }
     if(utils.isLinux()){
-        let pathd = path.join(process.cwd(), 'mastergame', 'metaverseserver', 'WindowsServer', PROJECTNAME, 'Binaries', 'Win64');
+        let pathd = path.join(process.cwd(), 'mastergame', 'metaverseserver', 'LinuxServer', PROJECTNAME, 'Binaries', 'Linux');
         return pathd;
     }
 }
@@ -27,7 +27,7 @@ const runNewSessionInstance = function(port)
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     if(utils.isLinux()){
-        let pathd = path.join(getMasterGamePath(), `${PROJECTNAME}Server.exe`);
+        let pathd = path.join(getMasterGamePath(), `${PROJECTNAME}Server`);
         instanceProcess = spawn(`${pathd}`, ['-log', `?port=${port}`], { shell: true });
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
