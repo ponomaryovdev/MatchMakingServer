@@ -31,8 +31,9 @@ const runNewSessionInstance = function(port)
     }
     if(utils.isLinux()){
         instanceProcess = exec(`/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer -log ?port=${port}`);
+        proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
-    return 0;
+    return instanceProcess.pid;
 }
 
 const endSessionInstance = function(pid)
