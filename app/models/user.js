@@ -2,7 +2,7 @@ class User
 {
     useruid = 'default';
     username = 'default';
-    avatarid = 'default'
+    avatarid = 'defaя ult'
     
     constructor(obj){
         obj && Object.assign(this, obj);

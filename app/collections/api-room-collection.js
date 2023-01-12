@@ -1,4 +1,4 @@
-const Room = require('../models/room');
+const Room = require('../models/room.model');
 const utils = require('../utils/utils');
 const { v4: uuidv4 } = require('uuid');
 const log = require('../utils/logger');

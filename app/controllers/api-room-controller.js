@@ -1,5 +1,5 @@
 const log = require('../utils/logger');
-const Room = require('../models/room');
+const Room = require('../models/room.model');
 const User = require('../models/user');
 const roomCollection = require('../collections/api-room-collection');
 const userCollection = require('../collections/api-user-collection');

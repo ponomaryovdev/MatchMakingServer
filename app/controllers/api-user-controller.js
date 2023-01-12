@@ -1,4 +1,4 @@
-const Room = require('../models/room');
+const Room = require('../models/room.model');
 const userCollection = require('../collections/api-user-collection');
 const log = require('../utils/logger');
 
