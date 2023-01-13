@@ -114,7 +114,6 @@ exports.saveAvatarID  = async (req, res) => {
   updatedListing = { avatarId: req.body.avatarId };
   try {
     const result = await User.findOneAndUpdate({username: req.body.username}, { $set: updatedListing});
-    console.log(result);
     res.status(200).send("Avatar was saved");
   }
   catch(err){
