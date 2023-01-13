@@ -24,6 +24,7 @@ router.post('/api/v1/newroom/', [authJwt.verifyToken], createRoom);
 router.post('/api/v1/removeroom/', [authJwt.verifyToken], removeRoom);
 router.post('/api/v1/join/', [authJwt.verifyToken], addUserToRoom);
 router.post('/api/v1/leave/', [authJwt.verifyToken], removeUserFromRoom);
+router.post('/api/v1/saveAvatar/', [authJwt.verifyToken], controller.saveAvatarID);
 
 router.post(
   "/api/v1/auth/signup",

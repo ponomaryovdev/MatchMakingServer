@@ -10,7 +10,8 @@ exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password: bcrypt.hashSync(req.body.password, 8),
+    avatarId: 0,
   });
 
   user.save((err, user) => {
@@ -90,7 +91,7 @@ exports.signin = (req, res) => {
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400 // 24 hours
+        expiresIn: 86400
       });
 
       var authorities = [];
@@ -102,8 +103,22 @@ exports.signin = (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
+        avatarId: user.avatarId,
         roles: authorities,
         accessToken: token
       });
     });
+};
+
+exports.saveAvatarID  = async (req, res) => {
+  updatedListing = { avatarId: req.body.avatarId };
+  try {
+    const result = await User.findOneAndUpdate({username: req.body.username}, { $set: updatedListing});
+    console.log(result);
+    res.status(200).send("Avatar was saved");
+  }
+  catch(err){
+    console.log(err);
+  }
+
 };
