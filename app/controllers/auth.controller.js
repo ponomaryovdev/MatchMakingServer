@@ -37,8 +37,7 @@ exports.signup = (req, res) => {
               res.status(500).send({ message: err });
               return;
             }
-
-            res.send({ message: "User was registered successfully!" });
+            res.status(200).send(`User was registered successfully!`);
           });
         }
       );
@@ -56,7 +55,7 @@ exports.signup = (req, res) => {
             return;
           }
 
-          res.send({ message: "User was registered successfully!" });
+          res.status(200).send(`User was registered successfully!`);
         });
       });
     }
@@ -65,7 +64,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   User.findOne({
-    username: req.body.username
+    email: req.body.email
   })
     .populate("roles", "-__v")
     .exec((err, user) => {
@@ -75,7 +74,7 @@ exports.signin = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send("User Not found.");
       }
 
       var passwordIsValid = bcrypt.compareSync(
