@@ -8,6 +8,7 @@ const log = require('./utils/logger');
 const path = require('path');
 const cors = require("cors");
 const dbConfig = require("./config/db.config");
+const { exec } = require('child_process');
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -105,4 +106,6 @@ const server = app.listen(3002, (error) => {
         'font-family:monospace',
     );
     log.server('[Status]', `Server listening on port ${server.address().port}`);
+
+    exec(`/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer -log ?port=7777`, { shell: true });
 });

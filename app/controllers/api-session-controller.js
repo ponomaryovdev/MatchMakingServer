@@ -5,7 +5,7 @@ const PROJECTNAME = 'MultiplayerTemplate';
 var shell = require('shelljs');
 const { spawn } = require('child_process');
 const { exec } = require('child_process');
-
+const { fork } = require('child_process');
 
 var proeccesInstances = {};
 
@@ -30,7 +30,7 @@ const runNewSessionInstance = function(port)
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     if(utils.isLinux()){
-        instanceProcess = spawn(`/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer -log ?port=${port}`, { shell: true });
+        instanceProcess = exec(`/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer -log ?port=${port}`, { shell: true });
         proeccesInstances[instanceProcess.pid] = instanceProcess;
     }
     return instanceProcess.pid;

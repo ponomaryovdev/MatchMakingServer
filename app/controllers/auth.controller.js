@@ -5,6 +5,7 @@ const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const log = require('../utils/logger');
 
 exports.signup = (req, res) => {
   const user = new User({
@@ -60,11 +61,12 @@ exports.signup = (req, res) => {
       });
     }
   });
+  log.server('[Status]', `User ${user.username} from ${user.email} was registered`);
 };
 
 exports.signin = (req, res) => {
   User.findOne({
-    username: req.body.username
+    email: req.body.email
   })
     .populate("roles", "-__v")
     .exec((err, user) => {
@@ -98,6 +100,8 @@ exports.signin = (req, res) => {
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
+      log.server('[Status]', `User ${user.username} from ${user.email} signed in`);
+
       res.status(200).send({
         id: user._id,
         username: user.username,
