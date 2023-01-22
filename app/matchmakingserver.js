@@ -106,6 +106,4 @@ const server = app.listen(3002, (error) => {
         'font-family:monospace',
     );
     log.server('[Status]', `Server listening on port ${server.address().port}`);
-
-    exec(`/home/ponomarevav/Documents/matchmaking/MatchMakingServer/mastergame/metaverseserver/LinuxServer/MultiplayerTemplate/Binaries/Linux/MultiplayerTemplateServer -log ?port=7777`, { shell: true });
 });
