@@ -1,5 +1,6 @@
 module.exports = {
-    HOST: "localhost",
+    user: "TestUser:123",
+    HOST: "127.0.0.1",
     PORT: 27017,
     DB: "MetaverseContent"
   };

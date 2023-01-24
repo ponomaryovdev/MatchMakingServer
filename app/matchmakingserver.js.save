@@ -34,8 +34,7 @@ const db = require("./models");
 const Role = db.role;
 
 db.mongoose
- // .connect(`mongodb://${dbConfig.user}@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
- .connect(`mongodb://TestUser2:TestUser2@127.0.0.1:27017/?authSource=admin&authMechanism=DEFAULT&authSource=MetaverseContent`, {
+  .connect(`mongodb://TestUser:123@{dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -43,8 +42,7 @@ db.mongoose
     console.log("Successfully connect to MongoDB.");
     initial();
   })
-  .catch(err => {
-    console.error("Connection error", err);
+  .catch(err => {   console.error("Connection error", err);
     process.exit();
   });
 
